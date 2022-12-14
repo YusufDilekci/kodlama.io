@@ -21,6 +21,11 @@ namespace Core.DataAccess.Hipernate
             Console.WriteLine("Veritabanından Silindi");
         }
 
+        public List<TEntity> GetAll()
+        {
+            return new List<TEntity>();
+        }
+
         public void Update(TEntity entity)
         {
             Console.WriteLine("Veritabanında Güncellendi");

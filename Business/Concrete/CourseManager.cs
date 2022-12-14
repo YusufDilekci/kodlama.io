@@ -22,12 +22,34 @@ namespace Business.Concrete
         }
         public void Add(Course course)
         {
-            _courseDal.Add(course);
+            var courses = _courseDal.GetAll();
+            foreach(var item in courses)
+            {
+                if (item.CourseName == course.CourseName)
+                {
+                    throw new Exception("Kurs ismi tekrar edemez");
+                }
+            }
+            if(course.Price < 0)
+            {
+                throw new Exception("Bir kursun fiyatı 0 dan küçük olamaz");
+            }
+
+            else
+            {
+                _courseDal.Add(course);
+            }
+           
         }
 
         public void Delete(Course course)
         {
             _courseDal.Delete(course);
+        }
+
+        public List<Course> GetAll()
+        {
+            return _courseDal.GetAll();
         }
 
         public void Log(Course course)

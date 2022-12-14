@@ -13,6 +13,7 @@ namespace Business.Abstract
         void Delete(Course course);
         void Update(Course course);
         void Log(Course course);
+        List<Course> GetAll();
 
     }
 }

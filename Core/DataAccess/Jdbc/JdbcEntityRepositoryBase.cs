@@ -21,6 +21,11 @@ namespace Core.DataAccess.Jdbc
             throw new NotImplementedException();
         }
 
+        public List<TEntity> GetAll()
+        {
+            return new List<TEntity>();
+        }
+
         public void Update(TEntity entity)
         {
             throw new NotImplementedException();
