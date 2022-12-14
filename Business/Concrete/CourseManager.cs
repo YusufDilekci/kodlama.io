@@ -13,12 +13,12 @@ namespace Business.Concrete
     public class CourseManager : ICourseService
     {
         private ICourseDal _courseDal;
-        private ILoggerService _loggerService;
+        private List<ILoggerService> _loggerServices;
 
-        public CourseManager(ICourseDal courseDal, ILoggerService loggerService)
+        public CourseManager(ICourseDal courseDal, List<ILoggerService> loggerServices)
         {
             _courseDal = courseDal;
-            _loggerService = loggerService;
+            _loggerServices = loggerServices;
         }
         public void Add(Course course)
         {
@@ -54,7 +54,11 @@ namespace Business.Concrete
 
         public void Log(Course course)
         {
-            _loggerService.Log(course.CourseName);
+            foreach(var logger in _loggerServices)  //polymorphsim
+            {
+                logger.Log(course.CourseName);     
+            }
+            
         }
 
         public void Update(Course course)
